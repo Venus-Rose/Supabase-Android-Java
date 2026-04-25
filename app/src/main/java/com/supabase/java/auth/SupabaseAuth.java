@@ -34,6 +34,8 @@ public class SupabaseAuth {
 		response -> {
 			try {
 				String token = response.getString("access_token");
+				this.refreshToken = response.getString("refresh_token");
+
 				listener.onSuccess(token);
 				} catch (JSONException e) {
 				listener.onError("Parsing error: " + e.getMessage());
@@ -86,7 +88,7 @@ public class SupabaseAuth {
 		response -> {
 			try {
 				String token = response.getString("access_token");
-				refreshToken = response.getString("refresh_token");
+				this.refreshToken = response.getString("refresh_token");
 				listener.onSuccess(token);
 				} catch (JSONException e) {
 				listener.onError("Parsing error: " + e.getMessage());
